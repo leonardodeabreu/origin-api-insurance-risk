@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  nginx:
+    build: ./docker/nginx
+    container_name: nginx-origin
+    restart: always
+    volumes:
+      - ./docker/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/config/app.vhost:/etc/nginx/conf.d/app.vhost
+      - ./docker/nginx/logs:/var/log/nginx
+      - ./src/:/var/www/html
+    networks:
+      - nginx
+    depends_on:
+      - 'php'
+    ports:
+      - '9090:80'
+
+  php:
+    build: ./docker/php7.4
+    container_name: php-origin
+    restart: always
+    networks:
+      - nginx
+    volumes:
+      - ./src/:/var/www/html
+      - ./docker/php7.4/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
+
+networks:
+  nginx:
