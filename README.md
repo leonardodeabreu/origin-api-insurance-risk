@@ -21,8 +21,8 @@ Repository hosting the Origin API, for calculating insurance risk.
   **1.1.** Clone the repository:
 
   ```
-   # git clone link.git
-   # git checkout master
+   # git clone git@github.com:leonardodeabreu/origin-api-insurance-risk.git
+   # git checkout main
   ```
 
   **1.2.** Build & Run the project using Docker Container:
